@@ -2,20 +2,15 @@ plugins {
     kotlin("jvm") version "2.1.20"
 }
 
-group = "com.ecra.kotlin-utils"
-version = "1.0-SNAPSHOT"
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    implementation("com.zaxxer:HikariCP:6.3.0")
+    implementation("com.mysql:mysql-connector-j:9.3.0")
 }
 
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(23)
 }
