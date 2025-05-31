@@ -36,8 +36,8 @@ class ConnectionPool(configuration: Configuration) {
 
     fun <T> executeAndMap(sql: String, params: List<Parameter> = emptyList(), mapper: (ResultSet) -> T) =
         mutableListOf<T>().apply {
-            dataSoure.connection.use { connection ->
-                connection.prepareStatement(sql).use { statement ->
+            dataSoure.connection.use {
+                it.prepareStatement(sql).use { statement ->
                     params.forEachIndexed { index, parameter ->
                         parameter.statementParameter(index + 1, statement)
                     }
